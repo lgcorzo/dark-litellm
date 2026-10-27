@@ -23,5 +23,23 @@ name = "pillow"
 version = "12.3.0"
 ecosystem = "PyPI"
 vulnerability.ignore = true
-effectiveUntil = 2026-10-27
+effectiveUntil = 2026-11-27
 reason = "pillow 13.0.0 requires Python >= 3.11, so the Python 3.10 resolution of the ci and dev groups stays on 12.3.0; 3.11+ is on 13.0.0"
+
+[[PackageOverrides]]
+name = "@azure/msal-node"
+version = "6.0.1"
+ecosystem = "npm"
+vulnerability.ignore = true
+effectiveUntil = 2026-11-27
+reason = "vscode-extension dev dependency; bump msal-node when upstream updates"
+
+[[IgnoredVulns]]
+id = "GHSA-567q-5qvw-pf92"
+ignoreUntil = 2026-11-20
+reason = "the only fixed filelock is 4.2.1, which requires Python >= 3.11 while litellm still supports 3.10; litellm only uses FileLock"
+
+[[IgnoredVulns]]
+id = "GHSA-9vhv-jxww-xfm5"
+ignoreUntil = 2026-11-20
+reason = "the only fixed filelock is 4.2.1, which requires Python >= 3.11 while litellm still supports 3.10; litellm only uses FileLock"

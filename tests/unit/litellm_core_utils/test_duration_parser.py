@@ -2,7 +2,14 @@ import unittest
 from datetime import datetime, time, timezone
 from typing import Final
 from unittest.mock import patch
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+try:
+    ZoneInfo('US/Eastern')
+    has_us_eastern = True
+except ZoneInfoNotFoundError:
+    has_us_eastern = False
+
 
 import pytest
 
@@ -79,6 +86,7 @@ class TestStandardizedResetTime(unittest.TestCase):
         second_result = get_next_standardized_reset_time("15s", base_time, "UTC")
         self.assertEqual(second_result, second_expected)
 
+    @unittest.skipUnless(has_us_eastern, "US/Eastern tzdata not available on runner")
     def test_timezone_handling(self):
         """Test timezone handling with different regions"""
         # Base time: 2023-05-15 22:30:00 UTC (late in UTC day)
@@ -168,6 +176,7 @@ class TestStandardizedResetTime(unittest.TestCase):
         chicago_result = get_next_standardized_reset_time("1d", base_time, "America/Chicago")
         self.assertEqual(chicago_result, chicago_expected)
 
+    @unittest.skipUnless(has_us_eastern, "US/Eastern tzdata not available on runner")
     def test_dst_fall_back(self):
         """Test DST fall-back transition (clocks go back 1 hour)."""
         # US/Eastern DST ends first Sunday of November 2023 (Nov 5)
@@ -181,6 +190,7 @@ class TestStandardizedResetTime(unittest.TestCase):
         result = get_next_standardized_reset_time("1d", pre_fallback, "US/Eastern")
         self.assertEqual(result, expected)
 
+    @unittest.skipUnless(has_us_eastern, "US/Eastern tzdata not available on runner")
     def test_dst_spring_forward(self):
         """Test DST spring-forward transition (clocks go forward 1 hour)."""
         # US/Eastern DST starts second Sunday of March 2023 (Mar 12)
