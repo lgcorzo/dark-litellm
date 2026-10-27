@@ -1,5 +1,5 @@
 [project]
-name = "dark-litellm"
+name = "litellm"
 version = "1.108.0"
 description = "Library to easily interface with LLM API providers"
 readme = "README.md"
@@ -7,7 +7,6 @@ requires-python = ">=3.10, <3.16"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
-    { name = "lgcorzo" },
     { name = "BerriAI" },
 ]
 dependencies = [
@@ -45,7 +44,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://litellm.ai"
-Repository = "https://github.com/lgcorzo/dark-litellm"
+Repository = "https://github.com/BerriAI/litellm"
 Documentation = "https://docs.litellm.ai"
 
 # Optional extras use compatible ranges (like the core SDK above) so downstream
