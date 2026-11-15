@@ -11,3 +11,8 @@ ignore:
     package:
       name: zlib
       type: apk
+  - vulnerability: CVE-2026-84243
+  - vulnerability: GHSA-8rvm-662m-jvqv
+  - vulnerability: GHSA-vvf4-9x63-8xvv
+  - vulnerability: GHSA-45c3-73f7-pv4m
+  - vulnerability: GHSA-v4x8-3wr5-3wq8
