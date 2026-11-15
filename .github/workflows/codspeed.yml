@@ -35,7 +35,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -45,6 +44,9 @@ jobs:
   benchmarks:
     name: Python benchmarks
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write # OIDC authentication with CodSpeed
     timeout-minutes: 60
 
     steps:
@@ -105,6 +107,9 @@ jobs:
   rust-benchmarks:
     name: Rust benchmarks
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write # OIDC authentication with CodSpeed
     timeout-minutes: 45
     defaults:
       run:
