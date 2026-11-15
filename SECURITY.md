@@ -1,3 +1,13 @@
+# Security Policy — `lgcorzo/dark-litellm` (Maintained Fork)
+
+> **Fork Vulnerability Reporting (`@lgcorzo`):**
+> This repository is a maintained fork of [BerriAI/litellm](https://github.com/BerriAI/litellm).
+> - **Do not report vulnerabilities specific to this fork's patches, workflows, or builds to the upstream maintainers.**
+> - Please report security issues for `lgcorzo/dark-litellm` via **[GitHub Security Advisories](https://github.com/lgcorzo/dark-litellm/security/advisories/new)**.
+> - For vulnerabilities reproducible in the unmodified upstream project, see the preserved upstream security policy below.
+
+---
+
 # Data Privacy and Security
 
 ## Security Announcements
