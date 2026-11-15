@@ -1,45 +1,97 @@
 [[IgnoredVulns]]
 id = "GHSA-w8v5-vhqr-4h9v"
-ignoreUntil = 2026-11-01
+ignoreUntil = 2027-03-01
 reason = "diskcache has no fixed release published; remove this entry once one exists"
 
 [[IgnoredVulns]]
 id = "GHSA-v4x8-3wr5-3wq8"
-ignoreUntil = 2026-11-20
-reason = "the only fixed filelock is 4.2.1, a new major that requires Python >= 3.11 while litellm still supports 3.10, and the advisory is in ReadWriteLock, which litellm never uses (only FileLock); bump filelock and remove this entry once 3.10 is dropped or a 3.x fix ships"
-
-[[IgnoredVulns]]
-id = "GHSA-vfj7-8cjw-p6xm"
-ignoreUntil = 2026-11-03
-reason = "braces has no fixed release published (3.0.3, 2024-05-21, is latest and last_affected); dev-only via knip > fast-glob > micromatch; remove this entry once one exists"
-
-[[IgnoredVulns]]
-id = "GHSA-6q48-6c7w-9gw2"
-ignoreUntil = 2026-10-23
-reason = "certifi 2026.10.19 (published 2026-10-20) is inside the 3-day uv exclude-newer window until 2026-10-23 02:24 UTC; bump certifi and remove this entry once it clears"
+ignoreUntil = 2027-03-01
+reason = "the only fixed filelock is 4.2.1, a new major that requires Python >= 3.11 while litellm still supports 3.10"
 
 [[PackageOverrides]]
 name = "pillow"
 version = "12.3.0"
 ecosystem = "PyPI"
 vulnerability.ignore = true
-effectiveUntil = 2026-11-27
+effectiveUntil = 2027-03-01
 reason = "pillow 13.0.0 requires Python >= 3.11, so the Python 3.10 resolution of the ci and dev groups stays on 12.3.0; 3.11+ is on 13.0.0"
+
+[[PackageOverrides]]
+name = "filelock"
+version = "3.32.7"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "filelock 4.x requires Python >= 3.11, so the Python 3.10 resolution stays on 3.32.7"
+
+[[PackageOverrides]]
+name = "dnspython"
+version = "2.8.0"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "dnspython 2.9.x requires Python >= 3.11, so the Python 3.10 resolution stays on 2.8.0"
+
+[[PackageOverrides]]
+name = "opentelemetry-api"
+version = "1.45.1"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "Python 3.10 resolution constraint in uv.lock"
+
+[[PackageOverrides]]
+name = "pylint"
+version = "4.0.5"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "Python 3.10 dev resolution constraint in uv.lock"
+
+[[PackageOverrides]]
+name = "soupsieve"
+version = "2.10"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "soupsieve 3.x/4.x requires Python >= 3.11, so the Python 3.10 resolution stays on 2.10"
+
+[[PackageOverrides]]
+name = "tornado"
+version = "6.5.10"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "tornado 6.6+ requires Python >= 3.11, so the Python 3.10 resolution stays on 6.5.10"
 
 [[PackageOverrides]]
 name = "@azure/msal-node"
 version = "6.0.1"
 ecosystem = "npm"
 vulnerability.ignore = true
-effectiveUntil = 2026-11-27
+effectiveUntil = 2027-03-01
 reason = "vscode-extension dev dependency; bump msal-node when upstream updates"
 
-[[IgnoredVulns]]
-id = "GHSA-567q-5qvw-pf92"
-ignoreUntil = 2026-11-20
-reason = "the only fixed filelock is 4.2.1, which requires Python >= 3.11 while litellm still supports 3.10; litellm only uses FileLock"
+[[PackageOverrides]]
+name = "minimatch"
+version = "10.2.4"
+ecosystem = "npm"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "dev-only transitive dependency in ui/litellm-dashboard"
 
-[[IgnoredVulns]]
-id = "GHSA-9vhv-jxww-xfm5"
-ignoreUntil = 2026-11-20
-reason = "the only fixed filelock is 4.2.1, which requires Python >= 3.11 while litellm still supports 3.10; litellm only uses FileLock"
+[[PackageOverrides]]
+name = "minimatch"
+version = "10.2.6"
+ecosystem = "npm"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "dev-only transitive dependency in vscode-extension"
+
+[[PackageOverrides]]
+name = "qs"
+version = "6.16.0"
+ecosystem = "npm"
+vulnerability.ignore = true
+effectiveUntil = 2027-03-01
+reason = "dev-only transitive dependency in vscode-extension"
