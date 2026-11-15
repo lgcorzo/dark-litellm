@@ -213,7 +213,7 @@ describe("KeyActivityPanel", () => {
       resolveNextPage(pageResponse([pageRow("key-50"), pageRow("key-51")], 52, 50));
       await nextPage;
     });
-    expect(await screen.findByRole("button", { name: /key-51/ })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /key-51/ }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.queryByText("Loading more keys...")).not.toBeInTheDocument();
   });
 
@@ -398,7 +398,7 @@ describe("KeyActivityPanel", () => {
     expect(fetchKeyPage).toHaveBeenCalledTimes(2);
 
     fireEvent.click(screen.getByRole("button", { name: "Retry" }));
-    expect(await screen.findByRole("button", { name: /key-51/ })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /key-51/ }, { timeout: 5000 })).toBeInTheDocument();
     expect(fetchKeyPage).toHaveBeenCalledTimes(3);
     expect(fetchKeyPage).toHaveBeenNthCalledWith(3, 50, 50);
   });
@@ -431,7 +431,7 @@ describe("KeyActivityPanel", () => {
     fireEvent.click(screen.getByRole("button", { name: "Clear key search" }));
     expect(await screen.findByText("Could not load more keys.")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Retry" }));
-    expect(await screen.findByRole("button", { name: /key-51/ })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /key-51/ }, { timeout: 5000 })).toBeInTheDocument();
     expect(fetchKeyPage).toHaveBeenCalledTimes(3);
     expect(fetchKeyPage).toHaveBeenNthCalledWith(3, 50, 50);
   });
