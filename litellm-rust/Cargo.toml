@@ -133,7 +133,7 @@ url = "2.5.8"
 percent-encoding = "2.3"
 webpki-roots = "1.0.10"
 time = { version = "0.3.53", features = ["parsing"] }
-criterion = "0.8.2"
+criterion = { package = "codspeed-criterion-compat", version = "6.0.0" }
 fancy-regex = "0.19.2"
 veil = "0.3.0"
 prost = "0.14.4"
@@ -147,3 +147,10 @@ panic = "unwind"
 debug = false
 incremental = false
 strip = "symbols"
+
+# Used by `cargo codspeed build --profile codspeed`: release optimizations, but
+# keep symbols and debug info so CodSpeed can attribute costs in flamegraphs.
+[profile.codspeed]
+inherits = "release"
+debug = true
+strip = "none"
