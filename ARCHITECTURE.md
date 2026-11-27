@@ -1,3 +1,38 @@
+# Architecture: `dark-litellm` in Dark Gravity
+
+## Ecosystem Role & Tier
+
+- **Tier**: `maintained_fork` (`MAINTAINED_FORK_PROFILE`, upstream `BerriAI/litellm`)
+- **Role**: Hardened sovereign LLM router and policy enforcement proxy routing inference across local Ollama (3x GPU time-slicing) and frontier API failover inside Dark Gravity's `llm-apps` namespace.
+- **Visibility**: `public`
+
+## Internal Component Design
+
+Preserves the upstream `litellm/`, `litellm-rust/`, `gateway/`, and `helm/` structure (`MAINTAINED_FORK_PROFILE` — detailed upstream architecture preserved below) while adding Dark Gravity sovereign hardening (`docker-compose.hardened.yml`, Trivy/OSV scanning, `RedisPriorityScheduler`, and custom callbacks enforcing `X-Vtag-*` FinOps telemetry and `X-A2A-Hop` checks).
+
+## Upstream & Downstream Ecosystem Interfaces
+
+```text
+rust_CACD_autonomous_factory / fastapi-autogen-team / R2R ──► dark-litellm (:4000/:4001)
+                                                                    ├──► Ollama GPU Time-Slicing (local models)
+                                                                    └──► Cloud Failover + FinOpsAgent (/spend/logs)
+```
+
+## Security Boundary & Governance
+
+- **Keycloak Native OIDC & `X-Vtag-*` PEP**: Enforces `> $1.00/min` velocity monitoring and the `90%` daily budget hard-stop with `FinOpsAgent`.
+- **Vertex 4 HITL & `DOC-011`**: All changes land via reviewed PRs; zero cluster secrets or private repo names appear in public files.
+
+## Canonical Cross-Links
+
+- [DARK_GRAVITY_MANIFEST.md](./DARK_GRAVITY_MANIFEST.md)
+- [REPOSITORIES.md](./REPOSITORIES.md)
+- [Global Architecture Portal](https://lgcorzo.github.io/architecture.html)
+- [Unified Start-Here Portal](https://lgcorzo.github.io/start-here)
+- [AI Auditor Pack](https://lgcorzo.github.io/docs/auditor/)
+
+---
+
 # LiteLLM Architecture - LiteLLM SDK + AI Gateway
 
 This document helps contributors understand where to make changes in LiteLLM.
